@@ -28,19 +28,19 @@ def get_weather():
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
-  return delta.days
+  return delta.days+1
 
 def get_birthday():
   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
-  return (next - today).days
+  return (next - today).days+1
 
 def get_birthday2():
   next = datetime.strptime(str(date.today().year) + "-" + birthday2, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
-  return (next - today).days
+  return (next - today).days+1
 
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
@@ -58,4 +58,4 @@ wm = WeChatMessage(client)
 wea, temhigh, temlow = get_weather()
 data = {"weather":{"value":wea},"temhigh":{"value":temhigh},"temlow":{"value":temlow},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"birthday_left_2":{"value":get_birthday2()},"words":{"value":get_words(), "color":get_random_color()}}
 wm.send_template(user_id, template_id, data)
-wm.send_template(user_other, template_id, data)
+# wm.send_template(user_other, template_id, data)
