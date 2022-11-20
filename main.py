@@ -33,7 +33,7 @@ def get_count():
   return delta.days+1
 
 def get_wedding():
-  wedding_left = datetime.strptime(wedding_day, "%Y-%m-%d")-today
+  wedding_left = datetime.strptime(wedding_day, "%Y-%m-%d") - today
   return wedding_left
 
 def get_birthday():
