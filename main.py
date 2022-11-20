@@ -34,9 +34,7 @@ def get_count():
 
 def get_wedding():
   wedding_left = datetime.strptime(wedding_day, "%Y-%m-%d")-today
-  if wedding_left<0:
-    wedding_left = 0
-  return wedding_left;
+  return wedding_left
 
 def get_birthday():
   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
