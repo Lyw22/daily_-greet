@@ -25,7 +25,7 @@ def get_weather():
   url = "http://apis.juhe.cn/simpleWeather/query?city=武汉&key=702370588cb6950df439d169aa5897af"
   res = requests.get(url).json()
   weather = res['result']['future'][1]
-  return weather['weather']
+  return weather['weather'], math.floor(weather['temperature'].split('\\\')[1].split('℃')[0]), math.floor(weather['temperature'].split('\\\')[0])
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -60,7 +60,7 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-wea = get_weather()
-data = {"weather":{"value":wea},"temhigh":{"value":8},"temlow":{"value":0},"love_days":{"value":get_count()},"wedding_days":{"value":get_wed_count()},"birthday_left":{"value":get_birthday()},"birthday_left_2":{"value":get_birthday2()},"words":{"value":get_words(), "color":get_random_color()}}
+wea, temhigh, temlow = get_weather()
+data = {"weather":{"value":wea},"temhigh":{"value":temhigh},"temlow":{"value":temlow},"love_days":{"value":get_count()},"wedding_days":{"value":get_wed_count()},"birthday_left":{"value":get_birthday()},"birthday_left_2":{"value":get_birthday2()},"words":{"value":get_words(), "color":get_random_color()}}
 wm.send_template(user_id, template_id, data)
 wm.send_template(user_other, template_id, data)
