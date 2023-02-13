@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import date, datetime
 import math
 from wechatpy import WeChatClient
@@ -25,7 +26,7 @@ def get_weather():
   url = "http://apis.juhe.cn/simpleWeather/query?city=武汉&key=702370588cb6950df439d169aa5897af"
   res = requests.get(url).json()
   weather = res['result']['future'][1]
-  return weather['weather'], math.floor(weather['temperature'].split('\\\')[1].split('℃')[0]), math.floor(weather['temperature'].split('\\\')[0])
+  return weather['weather'], weather['temperature'].split('\\\')[1].split('℃')[0], weather['temperature'].split('\\\')[0]
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
