@@ -20,12 +20,11 @@ user_other = os.environ["USER_OTHER"]
 template_id = os.environ["TEMPLATE_ID"]
 wedding = os.environ["WEDDING"]
 
-
 def get_weather():
-  url = "http://apis.juhe.cn/simpleWeather/query?city=武汉&key=702370588cb6950df439d169aa5897af"
+  url = "https://v0.yiketianqi.com/api?unescape=1&version=v91&appid=43656176&appsecret=I42og6Lm&ext=&cityid=&city=江夏"
   res = requests.get(url).json()
-  weather = res['result']['future'][1]
-  return weather['weather'], weather['temperature'].split('\\\')[1], weather['temperature'].split('\\\')[0]
+  weather = res['data'][1]
+  return weather['wea'], weather['tem1'], weather['tem2']
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
