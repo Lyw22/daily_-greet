@@ -21,7 +21,7 @@ template_id = os.environ["TEMPLATE_ID"]
 wedding = os.environ["WEDDING"]
 
 def get_weather():
-  url = "https://v0.yiketianqi.com/api?unescape=1&version=v91&appid=43656176&appsecret=I42og6Lm&ext=&cityid=&city=江夏"
+  url = "https://v0.yiketianqi.com/api?unescape=1&version=v91&appid=11792883&appsecret=VnW6PQVM&ext=&cityid=&city=江夏"
   res = requests.get(url).json()
   weather = res['data'][1]
   return weather['wea'], weather['tem1'], weather['tem2']
