@@ -21,10 +21,10 @@ template_id = os.environ["TEMPLATE_ID"]
 wedding = os.environ["WEDDING"]
 
 def get_weather():
-  url = "https://v0.yiketianqi.com/api?unescape=1&version=v91&appid=11792883&appsecret=VnW6PQVM&ext=&cityid=&city=江夏"
+  url = "https://devapi.qweather.com/v7/weather/3d?location=101200105&key=9ecc5f8f6f0c49589c6c4e8f80360613"
   res = requests.get(url).json()
-  weather = res['data'][1]
-  return weather['wea'], weather['tem1'], weather['tem2']
+  weather = res['daily'][1]
+  return weather['textDay'], weather['tempMax'], weather['tempMin']
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
